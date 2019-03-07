@@ -389,11 +389,11 @@ func getImageDetails(image string) (*imageDetails, error) {
 	}
 	layers, err := imgRef.Layers()
 	if err != nil {
-		return nil, fmt.Errorf("Error getting layers for image %s: %s", image, err)
+		return nil, fmt.Errorf("error getting layers for image %s: %s", image, err)
 	}
 	digest, err := imgRef.Digest()
 	if err != nil {
-		return nil, fmt.Errorf("Error getting digest for image %s: %s", image, err)
+		return nil, fmt.Errorf("error getting digest for image %s: %s", image, err)
 	}
 	return &imageDetails{
 		name:      image,

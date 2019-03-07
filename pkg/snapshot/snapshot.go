@@ -90,7 +90,7 @@ func (s *Snapshotter) TakeSnapshot(files []string) (string, error) {
 		// The parent directory might already be in a previous layer.
 		fileAdded, err := s.l.MaybeAdd(file)
 		if err != nil {
-			return "", fmt.Errorf("Unable to add parent dir %s to layered map: %s", file, err)
+			return "", fmt.Errorf("unable to add parent dir %s to layered map: %s", file, err)
 		}
 
 		if fileAdded {
@@ -108,7 +108,7 @@ func (s *Snapshotter) TakeSnapshot(files []string) (string, error) {
 		snapshottedFiles[file] = true
 
 		if err := s.l.Add(file); err != nil {
-			return "", fmt.Errorf("Unable to add file %s to layered map: %s", file, err)
+			return "", fmt.Errorf("unable to add file %s to layered map: %s", file, err)
 		}
 		filesToAdd = append(filesToAdd, file)
 	}

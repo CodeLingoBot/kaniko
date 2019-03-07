@@ -103,7 +103,7 @@ func (l *LayeredMap) Add(s string) error {
 	// Use hash function and add to layers
 	newV, err := l.hasher(s)
 	if err != nil {
-		return fmt.Errorf("Error creating hash for %s: %v", s, err)
+		return fmt.Errorf("error creating hash for %s: %v", s, err)
 	}
 	l.layers[len(l.layers)-1][s] = newV
 	return nil

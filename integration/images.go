@@ -98,7 +98,7 @@ func GetVersionedKanikoImage(imageRepo, dockerfile string, version int) string {
 func FindDockerFiles(dockerfilesPath string) ([]string, error) {
 	allDockerfiles, err := filepath.Glob(path.Join(dockerfilesPath, "Dockerfile_test*"))
 	if err != nil {
-		return []string{}, fmt.Errorf("Failed to find docker files at %s: %s", dockerfilesPath, err)
+		return []string{}, fmt.Errorf("failed to find docker files at %s: %s", dockerfilesPath, err)
 	}
 
 	var dockerfiles []string
@@ -168,7 +168,7 @@ func (d *DockerFileBuilder) BuildImage(imageRepo, gcsBucket, dockerfilesPath, do
 	out, err := RunCommandWithoutTest(dockerCmd)
 	timing.DefaultRun.Stop(timer)
 	if err != nil {
-		return fmt.Errorf("Failed to build image %s with docker command \"%s\": %s %s", dockerImage, dockerCmd.Args, err, string(out))
+		return fmt.Errorf("failed to build image %s with docker command \\"%s\\": %s %s", dockerImage, dockerCmd.Args, err, string(out))
 	}
 
 	contextFlag := "-c"
@@ -222,7 +222,7 @@ func (d *DockerFileBuilder) BuildImage(imageRepo, gcsBucket, dockerfilesPath, do
 	out, err = RunCommandWithoutTest(kanikoCmd)
 	timing.DefaultRun.Stop(timer)
 	if err != nil {
-		return fmt.Errorf("Failed to build image %s with kaniko command \"%s\": %s %s", dockerImage, kanikoCmd.Args, err, string(out))
+		return fmt.Errorf("failed to build image %s with kaniko command \\"%s\\": %s %s", dockerImage, kanikoCmd.Args, err, string(out))
 	}
 
 	d.FilesBuilt[dockerfile] = true
@@ -243,7 +243,7 @@ func populateVolumeCache() error {
 	)
 
 	if _, err := RunCommandWithoutTest(warmerCmd); err != nil {
-		return fmt.Errorf("Failed to warm kaniko cache: %s", err)
+		return fmt.Errorf("failed to warm kaniko cache: %s", err)
 	}
 
 	return nil
@@ -281,7 +281,7 @@ func (d *DockerFileBuilder) buildCachedImages(imageRepo, cacheRepo, dockerfilesP
 		_, err := RunCommandWithoutTest(kanikoCmd)
 		timing.DefaultRun.Stop(timer)
 		if err != nil {
-			return fmt.Errorf("Failed to build cached image %s with kaniko command \"%s\": %s", kanikoImage, kanikoCmd.Args, err)
+			return fmt.Errorf("failed to build cached image %s with kaniko command \\"%s\\": %s", kanikoImage, kanikoCmd.Args, err)
 		}
 	}
 	return nil
